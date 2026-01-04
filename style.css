@@ -1,0 +1,418 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  background-attachment: fixed;
+  color: #eee;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ヘッダー */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.header h1 {
+  flex: 1;
+  margin: 0;
+  font-weight: 400;
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  outline: none;
+  transition: background 0.2s;
+}
+
+.header h1:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.header h1:focus {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+#project-select {
+  padding: 0.6rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #eee;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#project-select:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.btn-icon {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #aaa;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-icon:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.btn-icon.delete:hover {
+  background: rgba(233, 69, 96, 0.2);
+  color: #e94560;
+}
+
+/* 進捗バー */
+.progress-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.8rem 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.progress-bar {
+  flex: 1;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #7bed9f, #2ed573);
+  border-radius: 5px;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 0%;
+  box-shadow: 0 0 10px rgba(123, 237, 159, 0.3);
+}
+
+.progress-text {
+  font-size: 0.9rem;
+  color: #7bed9f;
+  font-weight: 500;
+  min-width: 70px;
+  text-align: right;
+}
+
+/* デッドライン */
+.deadline-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.deadline-section label {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.deadline-section input[type="date"] {
+  padding: 0.6rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #eee;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+.deadline-section input[type="date"]:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.days-left {
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.days-left.urgent {
+  color: #e94560;
+  background: rgba(233, 69, 96, 0.15);
+}
+
+.days-left.warning {
+  color: #ffa502;
+  background: rgba(255, 165, 2, 0.15);
+}
+
+.days-left.safe {
+  color: #7bed9f;
+  background: rgba(123, 237, 159, 0.15);
+}
+
+/* フォーム */
+.form {
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+}
+
+.form input {
+  flex: 1;
+  padding: 1rem 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #eee;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+.form input:focus {
+  outline: none;
+  border-color: rgba(233, 69, 96, 0.5);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 20px rgba(233, 69, 96, 0.1);
+}
+
+.form input::placeholder {
+  color: #666;
+}
+
+.form button {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #e94560, #ff6b6b);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+}
+
+.form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(233, 69, 96, 0.4);
+}
+
+.form button:active {
+  transform: translateY(0);
+}
+
+/* タスクグリッド（蛇状） */
+.tasks {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.8rem;
+}
+
+.task-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+/* 偶数行は逆順 */
+.task-wrapper.reverse {
+  flex-direction: row-reverse;
+}
+
+.task {
+  width: 100%;
+  aspect-ratio: 1;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+  border-radius: 16px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: grab;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  font-size: 0.9rem;
+  word-break: break-word;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.task:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.task.dragging {
+  opacity: 0.5;
+  transform: scale(0.95) rotate(2deg);
+}
+
+.task.drag-over {
+  background: rgba(233, 69, 96, 0.15);
+  border-color: rgba(233, 69, 96, 0.3);
+}
+
+.task .title {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.4;
+}
+
+.task .edit,
+.task .delete {
+  position: absolute;
+  top: 8px;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  font-size: 0.9rem;
+  opacity: 0;
+  transition: all 0.2s;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+}
+
+.task .edit {
+  left: 8px;
+}
+
+.task .delete {
+  right: 8px;
+}
+
+.task:hover .edit,
+.task:hover .delete {
+  opacity: 1;
+}
+
+.task .edit:hover {
+  color: #7bed9f;
+  background: rgba(123, 237, 159, 0.15);
+}
+
+.task .delete:hover {
+  color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.15);
+}
+
+/* 完了状態 */
+.task.done {
+  background: rgba(26, 77, 62, 0.4);
+  border-color: rgba(123, 237, 159, 0.2);
+}
+
+.task.done .title {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* 現在のタスク（未完了で一番先頭） */
+.task.current {
+  background: linear-gradient(135deg, rgba(233, 69, 96, 0.3), rgba(255, 107, 107, 0.2));
+  border-color: rgba(233, 69, 96, 0.4);
+  box-shadow: 0 0 30px rgba(233, 69, 96, 0.3);
+  animation: glow 2s ease-in-out infinite;
+}
+
+.task.current::before {
+  content: '▶';
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  color: rgba(233, 69, 96, 0.8);
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 30px rgba(233, 69, 96, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(233, 69, 96, 0.5);
+  }
+}
+
+/* 矢印 */
+.arrow {
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 1.2rem;
+  padding: 0 0.4rem;
+  flex-shrink: 0;
+  transition: color 0.2s;
+}
+
+.arrow.down {
+  grid-column: 1 / -1;
+  text-align: right;
+  padding: 0.5rem 1rem;
+}
+
+.arrow.down.left {
+  text-align: left;
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+  body {
+    padding: 1rem;
+  }
+
+  .tasks {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .header {
+    flex-wrap: wrap;
+  }
+
+  .header h1 {
+    order: -1;
+    width: 100%;
+    text-align: center;
+  }
+}

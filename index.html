@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roadmap</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- ヘッダー：プロジェクト選択 + 名前 -->
+    <div class="header">
+      <select id="project-select"></select>
+      <h1 id="project-name" contenteditable="true">新規プロジェクト</h1>
+      <button id="add-project" class="btn-icon" title="新規プロジェクト">+</button>
+      <button id="delete-project" class="btn-icon delete" title="プロジェクト削除">×</button>
+    </div>
+
+    <!-- 進捗バー -->
+    <div class="progress-section">
+      <div class="progress-bar">
+        <div id="progress-fill" class="progress-fill"></div>
+      </div>
+      <span id="progress-text" class="progress-text">0 / 0</span>
+    </div>
+
+    <!-- デッドライン -->
+    <div class="deadline-section">
+      <label>Deadline:</label>
+      <input type="date" id="deadline">
+      <span id="days-left" class="days-left"></span>
+    </div>
+
+    <!-- 入力フォーム -->
+    <form id="task-form" class="form">
+      <input type="text" id="title" placeholder="タスクを追加..." required>
+      <button type="submit">追加</button>
+    </form>
+
+    <!-- タスクリスト -->
+    <div id="tasks" class="tasks"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
